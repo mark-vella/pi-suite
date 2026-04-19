@@ -1,0 +1,53 @@
+name: Update Fireworks Models
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-models:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install dependencies
+        run: npx vp install --frozen-lockfile
+
+      - name: Generate models
+        env:
+          FIREWORKS_API_KEY: ${{ secrets.FIREWORKS_API_KEY }}
+          FIREWORKS_ACCOUNT_ID: ${{ secrets.FIREWORKS_ACCOUNT_ID }}
+        run: npx vp run @markvella/pi-fireworks-ai#generate-models
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet extensions/pi-fireworks-ai/src/models.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "chore(fireworks): update model list"
+          body: |
+            Auto-generated model list update from Fireworks API.
+
+            This PR was created by the daily scheduled workflow.
+          branch: chore/update-fireworks-models
+          commit-message: "chore(fireworks): update model list from API"
+          labels: automated

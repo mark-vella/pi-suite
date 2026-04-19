@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2025-07-18T00:00:00.000Z",
+  "models": [
+    {
+      "id": "accounts/fireworks/models/qwen3p6-plus",
+      "name": "Qwen 3.6 Plus",
+      "reasoning": true,
+      "input": ["text", "image"],
+      "cost": { "input": 0.276, "output": 1.651, "cacheRead": 0.028, "cacheWrite": 0.344 },
+      "contextWindow": 1000000,
+      "maxTokens": 65536
+    },
+    {
+      "id": "accounts/fireworks/models/kimi-k2p5",
+      "name": "Kimi K2.5",
+      "reasoning": true,
+      "input": ["text", "image"],
+      "cost": { "input": 0.6, "output": 3, "cacheRead": 0.1, "cacheWrite": 0 },
+      "contextWindow": 262144,
+      "maxTokens": 256000
+    },
+    {
+      "id": "accounts/fireworks/models/deepseek-v3p2",
+      "name": "DeepSeek V3.2",
+      "reasoning": true,
+      "input": ["text"],
+      "cost": { "input": 0.56, "output": 1.68, "cacheRead": 0.28, "cacheWrite": 0 },
+      "contextWindow": 163840,
+      "maxTokens": 160000
+    },
+    {
+      "id": "accounts/fireworks/models/glm-5",
+      "name": "GLM 5",
+      "reasoning": true,
+      "input": ["text"],
+      "cost": { "input": 1, "output": 3.2, "cacheRead": 0.5, "cacheWrite": 0 },
+      "contextWindow": 202752,
+      "maxTokens": 131072
+    },
+    {
+      "id": "accounts/fireworks/models/glm-5p1",
+      "name": "GLM 5.1",
+      "reasoning": true,
+      "input": ["text"],
+      "cost": { "input": 1.4, "output": 4.4, "cacheRead": 0.26, "cacheWrite": 0 },
+      "contextWindow": 200000,
+      "maxTokens": 131072
+    },
+    {
+      "id": "accounts/fireworks/models/minimax-m2p5",
+      "name": "MiniMax-M2.5",
+      "reasoning": true,
+      "input": ["text"],
+      "cost": { "input": 0.3, "output": 1.2, "cacheRead": 0.03, "cacheWrite": 0 },
+      "contextWindow": 196608,
+      "maxTokens": 196608
+    }
+  ]
+}

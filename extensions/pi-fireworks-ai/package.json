@@ -1,0 +1,38 @@
+{
+  "name": "@markvella/pi-fireworks-ai",
+  "version": "0.0.0",
+  "keywords": [
+    "pi-package"
+  ],
+  "files": [
+    "src"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsgo --noEmit",
+    "check": "tsgo --noEmit",
+    "lint": "vp lint src",
+    "test": "vp test src",
+    "generate-models": "tsgo --project tsconfig.scripts.json && node dist/scripts/model-generator/index.js"
+  },
+  "dependencies": {
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@mariozechner/pi-coding-agent": "^0.65.2",
+    "@types/node": "latest",
+    "@typescript/native-preview": "latest",
+    "better-result": "2.8.1"
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  }
+}

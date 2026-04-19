@@ -1,0 +1,36 @@
+{
+  "name": "pi-suite",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "extensions/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "changeset": "changeset",
+    "check": "turbo run check",
+    "lint": "turbo run lint",
+    "release": "changeset publish",
+    "test": "turbo run test",
+    "version-packages": "changeset version",
+    "ready": "vp fmt && vp lint && turbo run check && turbo run test"
+  },
+  "devDependencies": {
+    "@changesets/cli": "latest",
+    "@typescript/native-preview": "latest",
+    "turbo": "2.9.6",
+    "vite-plus": "latest"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+    "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+  },
+  "engines": {
+    "node": "24.14.1"
+  },
+  "volta": {
+    "node": "24.14.1"
+  },
+  "packageManager": "pnpm@10.33.0"
+}

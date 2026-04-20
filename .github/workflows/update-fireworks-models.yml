@@ -16,19 +16,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
           node-version-file: ".nvmrc"
+          cache: true
+          run-install: false
 
       - name: Install dependencies
-        run: npx vp install --frozen-lockfile
+        run: vp install --frozen-lockfile
 
       - name: Generate models
         env:
           FIREWORKS_API_KEY: ${{ secrets.FIREWORKS_API_KEY }}
           FIREWORKS_ACCOUNT_ID: ${{ secrets.FIREWORKS_ACCOUNT_ID }}
-        run: npx vp run @markvella/pi-fireworks-ai#generate-models
+        run: vp run @markvella/pi-fireworks-ai#generate-models
 
       - name: Check for changes
         id: changes

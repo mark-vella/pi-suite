@@ -19,25 +19,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
           node-version-file: ".nvmrc"
+          cache: true
+          run-install: false
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: npx vp install --frozen-lockfile
+        run: vp install --frozen-lockfile
 
       - name: Validate repository
-        run: npx vp run ready
+        run: vp run ready
 
       - name: Create release PR or publish packages
         uses: changesets/action@v1
         with:
           commit: "chore: version packages"
           title: "chore: version packages"
-          version: npx changeset version
-          publish: npx changeset publish
+          version: vp exec changeset version
+          publish: vp exec changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

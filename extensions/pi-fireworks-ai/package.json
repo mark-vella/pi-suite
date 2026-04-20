@@ -1,6 +1,7 @@
 {
   "name": "@markvella/pi-fireworks-ai",
   "version": "0.0.0",
+  "description": "Fireworks AI provider extension for pi.",
   "keywords": [
     "pi-package"
   ],
